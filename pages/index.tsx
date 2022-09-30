@@ -2,8 +2,10 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { delay } from '../utils/delay';
 
 const Home: NextPage = () => {
+  console.log('rendering index page');
   return (
     <div className={styles.container}>
       <Head>
@@ -68,5 +70,12 @@ const Home: NextPage = () => {
     </div>
   )
 }
+
+Home.getInitialProps = async () => {
+  console.log('executing getInitialProps - pre delay');
+  await delay(100);
+  console.log('executing getInitialProps - post delay');
+  return { initialState: {} };
+};
 
 export default Home
